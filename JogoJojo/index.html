@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>JOJO BIZARRE ADVENTURES
+    </head>
+    <body nome="meuBody">
+        <center>
+            <h1>Derrote KIRA</h1>
+            <h2>Ajude os Stardust Crusaders a derrottar um dos maiores psicopatas do mundo de JOJO</h2>
+            <img id = "villionFace" src ="kira.png"/>
+            <div id = "barraHP" style="background-color: rgb(3, 95, 45); width: 200px;  height: 30px"></div>
+            <br> <!---Isso é uma quebra de linha-->
+            <button id="btAtackPlayer" style="background-color: blue; height: 35px">ATAQUE</button>
+        </center>
+        <script>
+            let JaMorreu = false;
+            let vida = 200;
+            let cry = new Audio("classic_hurt.mp3");
+            let gemido = new Audio("loli.mp3");
+            function AtackPlayer(){
+                vida -= 40; 
+                barraHP.style.width = vida + "px"
+                if (vida <= 0){
+                    villionFace.src = "KiraDead.jpg"
+                    if (!JaMorreu){
+                        gemido.play();
+                        JaMorreu = true;
+                    }
+                } 
+                else{
+                    villionFace.src = "KiraDaNo.jpg";
+                    cry.play();
+                    villionFace.src = "kira.png"
+                }
+            }
+            btAtackPlayer.onclick = AtackPlayer;
+                
+        </script>
+    </body>
+</html>
