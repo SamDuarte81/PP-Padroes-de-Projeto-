@@ -16,20 +16,25 @@
             let vida = 200;
             let cry = new Audio("classic_hurt.mp3");
             let gemido = new Audio("loli.mp3");
+            function voltaCara(){
+                villionFace.src = "kira.png";
+            }
             function AtackPlayer(){
                 vida -= 40; 
-                barraHP.style.width = vida + "px"
+                barraHP.style.width = vida + "px";
                 if (vida <= 0){
-                    villionFace.src = "KiraDead.jpg"
+                    villionFace.src = "KiraDead.jpg";
                     if (!JaMorreu){
                         gemido.play();
                         JaMorreu = true;
                     }
                 } 
                 else{
-                    villionFace.src = "KiraDaNo.jpg";
+
                     cry.play();
-                    villionFace.src = "kira.png"
+                    villionFace.src = "KiraDaNo.jpg";
+                    setTimeout(voltaCara, 1000);
+                    
                 }
             }
             btAtackPlayer.onclick = AtackPlayer;
