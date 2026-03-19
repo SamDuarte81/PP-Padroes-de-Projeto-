@@ -1,0 +1,225 @@
+/* index.css — Arena de Batalha */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 16px;
+    color: #222;
+}
+
+#titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* ── GRADE DOS MONSTROS ── */
+#arena-monstros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.card-monstro {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    background: #fff;
+}
+
+.card-monstro img.img-monstro {
+    width: 100%;
+    max-width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.card-monstro .nome-monstro {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-monstro .atributos {
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.card-monstro .grito {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #aaa;
+    padding-left: 6px;
+    text-align: left;
+    width: 100%;
+    min-height: 28px;
+}
+
+.card-monstro.morto {
+    opacity: 0.45;
+    filter: grayscale(0.7);
+}
+
+/* ── BARRA DE VIDA (visual igual para todos, valor diferente) ── */
+.hp-container { width: 100%; }
+
+.hp-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: #444;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.hp-barra-fundo {
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #bbb;
+}
+
+.hp-barra-preenchimento {
+    height: 100%;
+    border-radius: 6px;
+    background: #28a745;
+
+}
+
+
+
+/* ── BOTÕES dos cards dos monstros ── */
+.botoes-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+/* Botão Atacar */
+.btn-atacar {
+    width: 100%;
+    padding: 8px 0;
+    background: #dc3545;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+.btn-atacar:hover  { background: #b02a37; }
+.btn-atacar:active { transform: scale(0.97); }
+.btn-atacar:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+
+/* Botão Recebe Ataque */
+.btn-recebe {
+    width: 100%;
+    padding: 8px 0;
+    background: #6c757d;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+.btn-recebe:hover  { background: #545b62; }
+.btn-recebe:active { transform: scale(0.97); }
+.btn-recebe:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+
+/* ── DIVISOR VS ── */
+#divisor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0;
+}
+#divisor::before, #divisor::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #ccc;
+}
+#divisor span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+/* ── CARD DO JOGADOR (sem botões) ── */
+#arena-jogador {
+    display: flex;
+    justify-content: center;
+}
+
+#card-jogador {
+    border: 2px solid #0d6efd;
+    border-radius: 10px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+}
+
+#card-jogador img.img-jogador {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #0d6efd;
+    flex-shrink: 0;
+}
+
+.jogador-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.jogador-nome {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+/* ── ANIMAÇÕES ── */
+@keyframes tremer {
+    0%,100% { transform: translateX(0); }
+    25%     { transform: translateX(-6px); }
+    75%     { transform: translateX(6px); }
+}
+.card-monstro.tremendo { animation: tremer 0.3s ease; }
+
+@keyframes piscar-dano {
+    0%,100% { border-color: #0d6efd; }
+    50%     { border-color: #dc3545; background: #fff0f0; }
+}
+#card-jogador.tomando-dano { animation: piscar-dano 0.35s ease; }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 700px) {
+    #arena-monstros { grid-template-columns: repeat(2, 1fr); }
+    #card-jogador   { flex-direction: column; text-align: center; }
+}
